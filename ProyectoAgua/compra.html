@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulación de Compra de Agua</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            text-align: center;
+        }
+        
+        .product {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+        
+        .product img {
+            max-width: 100px;
+            height: auto;
+        }
+        
+        .product-details {
+            flex-grow: 1;
+            margin-left: 15px;
+        }
+        
+        .product-price {
+            font-weight: bold;
+        }
+        
+        .total {
+            margin-top: 20px;
+            text-align: right;
+            font-weight: bold;
+        }
+        
+        .checkout-btn {
+            display: block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .checkout-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Simulación de Compra de Agua</h1>
+        
+        <div class="product">
+            <img src="https://via.placeholder.com/150" alt="Botella de Agua">
+            <div class="product-details">
+                <h3>Botella de Agua (500ml)</h3>
+                <p>Agua purificada en una botella de 500ml.</p>
+                <p class="product-price">$1.00</p>
+            </div>
+            <input type="number" min="0" value="0">
+        </div>
+        
+        <div class="product">
+            <img src="https://via.placeholder.com/150" alt="Botella de Agua">
+            <div class="product-details">
+                <h3>Botella de Agua (1 litro)</h3>
+                <p>Agua purificada en una botella de 1 litro.</p>
+                <p class="product-price">$1.50</p>
+            </div>
+            <input type="number" min="0" value="0">
+        </div>
+        
+        <div class="total">
+            Total: <span id="total-price">$0.00</span>
+        </div>
+        
+        <a href="file:///C:/Users/Predator/Desktop/ProyectoAgua/entregas.html" class="button">Ir a Entrega</a>
+    </div>
+    
+    <script>
+        document.querySelectorAll('input[type="number"]').forEach(function(input) {
+            input.addEventListener('input', updateTotal);
+        });
+        
+        function updateTotal() {
+            var total = 0;
+            document.querySelectorAll('.product').forEach(function(product, index) {
+                var quantity = parseInt(product.querySelector('input[type="number"]').value);
+                var price = parseFloat(product.querySelector('.product-price').innerText.replace('$', ''));
+                total += quantity * price;
+            });
+            document.getElementById('total-price').innerText = '$' + total.toFixed(2);
+        }
+    </script>
+</body>
+</html>
