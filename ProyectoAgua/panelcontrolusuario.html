@@ -25,33 +25,91 @@
       border-radius: 5px;
     }
   </style>
-</head>
-<body>
-  <h1>Panel de Control de Usuarios</h1>
-  <table>
-    <thead>
-      <tr>
-        <th>Nombre</th>
-        <th>Apellido</th>
-        <th>Correo</th>
-        <th>Estado de Compra</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Juan</td>
-        <td>Pérez</td>
-        <td>juan@example.com</td>
-        <td>
-          <select>
-            <option value="pendiente">Pendiente</option>
-            <option value="enviado">Enviado</option>
-            <option value="entregado">Entregado</option>
-          </select>
-        </td>
-      </tr>
-      <!-- Aquí puedes agregar más filas con información de otros usuarios -->
-    </tbody>
-  </table>
-</body>
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Control Panel</title>
+    <style>
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <h1>Panel de Control de Usuarios</h1>
+    <table id="usersTable">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Correo</th>
+          <th>Estado de Compra</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td contenteditable="true">Juan</td>
+          <td contenteditable="true">Pérez</td>
+          <td contenteditable="true">juan@example.com</td>
+          <td>
+            <select>
+              <option value="pendiente">Pendiente</option>
+              <option value="enviado">Enviado</option>
+              <option value="entregado">Entregado</option>
+            </select>
+          </td>
+          <td>
+            <button class="deleteRow">Eliminar</button>
+          </td>
+        </tr>
+        <!-- Aquí puedes agregar más filas con información de otros usuarios -->
+      </tbody>
+    </table>
+    <button id="addRow">Agregar Nuevo Cliente</button>
+  
+    <script>
+      $(document).ready(function() {
+        // Delete row
+        $(document).on('click', '.deleteRow', function() {
+          $(this).closest('tr').remove();
+        });
+  
+        // Add row
+        $('#addRow').click(function() {
+          var newRow = `
+            <tr>
+              <td contenteditable="true">Nuevo</td>
+              <td contenteditable="true">Usuario</td>
+              <td contenteditable="true">nuevo@ejemplo.com</td>
+              <td>
+                <select>
+                  <option value="pendiente">Pendiente</option>
+                  <option value="enviado">Enviado</option>
+                  <option value="entregado">Entregado</option>
+                </select>
+              </td>
+              <td>
+                <button class="deleteRow">Eliminar</button>
+              </td>
+            </tr>
+          `;
+          $('#usersTable tbody').append(newRow);
+        });
+      });
+    </script>
+  </body>
+  </html>
 </html>
