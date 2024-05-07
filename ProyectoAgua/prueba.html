@@ -52,7 +52,7 @@
   </table>
 
   <script>
-    // Función para calcular el total
+  
     function calcularTotal() {
       var ganancias = parseInt(document.getElementById("ganancias").textContent.replace("$", ""));
       var gastos = parseInt(document.getElementById("gastos").textContent.replace("$", ""));
@@ -60,14 +60,14 @@
       document.getElementById("total").textContent = "$" + total;
     }
 
-    // Evento de cambio en los campos de entrada
+    
     document.querySelectorAll('input[type="number"]').forEach(function(input) {
       input.addEventListener('change', function() {
         calcularTotal();
       });
     });
 
-    // Calcula el total inicial al cargar la página
+    
     calcularTotal();
   </script>
 </body>
