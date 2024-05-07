@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Ventas - Empresa de Agua</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <h1>Panel de Ventas - Empresa de Agua</h1>
+  <table id="salesPanel">
+    <tr>
+      <th>Ganancias</th>
+      <td><span id="ganancias">$5000</span></td>
+    </tr>
+    <tr>
+      <th>Gastos</th>
+      <td><span id="gastos">$3000</span></td>
+    </tr>
+    <tr>
+      <th>Cantidad de Clientes</th>
+      <td><input type="number" id="clientes" value="100"></td>
+    </tr>
+    <tr>
+      <th>Pedidos Pagados</th>
+      <td><input type="number" id="pagados" value="80"></td>
+    </tr>
+    <tr>
+      <th>Pedidos por Pagar</th>
+      <td><input type="number" id="porPagar" value="20"></td>
+    </tr>
+    <tr>
+      <th>Total</th>
+      <td><span id="total"></span></td>
+    </tr>
+  </table>
+
+  <script>
+    // Función para calcular el total
+    function calcularTotal() {
+      var ganancias = parseInt(document.getElementById("ganancias").textContent.replace("$", ""));
+      var gastos = parseInt(document.getElementById("gastos").textContent.replace("$", ""));
+      var total = ganancias - gastos;
+      document.getElementById("total").textContent = "$" + total;
+    }
+
+    // Evento de cambio en los campos de entrada
+    document.querySelectorAll('input[type="number"]').forEach(function(input) {
+      input.addEventListener('change', function() {
+        calcularTotal();
+      });
+    });
+
+    // Calcula el total inicial al cargar la página
+    calcularTotal();
+  </script>
+</body>
+</html>
